@@ -11,15 +11,15 @@
 @implementation UIImage (ScaleAndCut)
 - (UIImage *)imageByScalingToMaxSize
 {
-    if (self.size.width < HLWINSIZE.width) return self;
+    if (self.size.width < [UIScreen mainScreen].bounds.size.width) return self;
     CGFloat btWidth = 0.0f;
     CGFloat btHeight = 0.0f;
     if (self.size.width > self.size.height) {
-        btHeight = HLWINSIZE.width;
-        btWidth = HLWINSIZE.width * (HLWINSIZE.width / self.size.height);
+        btHeight = [UIScreen mainScreen].bounds.size.width;
+        btWidth = [UIScreen mainScreen].bounds.size.width * ([UIScreen mainScreen].bounds.size.width / self.size.height);
     } else {
-        btWidth = HLWINSIZE.width;
-        btHeight = self.size.height * (HLWINSIZE.width / self.size.width);
+        btWidth = [UIScreen mainScreen].bounds.size.width;
+        btHeight = self.size.height * ([UIScreen mainScreen].bounds.size.width / self.size.width);
     }
     CGSize targetSize = CGSizeMake(btWidth, btHeight);
     return [self imageByScalingAndCroppingSize:targetSize];

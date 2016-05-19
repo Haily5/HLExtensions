@@ -34,9 +34,6 @@
 #define colorWithHexString(arg)    [HLAutoViewUntil colorWithHexString:arg]
 #define hly_autoFontSize(arg)      [HLAutoViewUntil autoFontSize:arg]
 
-#define d_CachePath NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]
-#define d_Document  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
-
 #define realyValue(key, data) \
     data[key] ? [data[key] intValue] : -1
 

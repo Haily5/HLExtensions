@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "HLDataModel.h"
 
+#define d_CachePath NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]
+#define d_Document  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
+
 @interface HLDataModelManager : NSObject
 
 + (HLDataModelManager *)shareDataModelManager;

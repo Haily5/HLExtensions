@@ -7,7 +7,7 @@
 //
 
 #import "HLDataModel.h"
-#import "HLAutoViewDefine.h"
+#import "NSData+HLUntil.h"
 
 @interface HLDataModel ()
 @property (nonatomic, strong) NSMutableDictionary *blockDict;

@@ -7,7 +7,7 @@
 //
 
 #import "HLDataModelManager.h"
-#import "HLAutoViewDefine.h"
+#import "NSData+HLUntil.h"
 #import "HLDataModel.h"
 
 #define MDKey @"YcX_P0jkeT"

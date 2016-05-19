@@ -8,6 +8,7 @@
 
 #import "HLRunTimeMachine.h"
 #import "Aspects.h"
+#import "UIViewController+Extensions.h"
 
 @implementation HLRunTimeMachine
 
@@ -28,7 +29,8 @@
          if ([aspectInfo.instance respondsToSelector:@selector(descriptionName)]) {
              id <UIViewControllerDescription> viewCtrl = aspectInfo.instance;
              NSString *ctrlName = [viewCtrl descriptionName];
-             [TalkingData trackPageBegin:ctrlName];
+             NSLog(@"enter view named %@",ctrlName);
+//             [TalkingData trackPageBegin:ctrlName];
          }
      }error:NULL];
 }
@@ -40,7 +42,8 @@
          if ([aspectInfo.instance respondsToSelector:@selector(descriptionName)]) {
              id <UIViewControllerDescription> viewCtrl = aspectInfo.instance;
              NSString *ctrlName = [viewCtrl descriptionName];
-             [TalkingData trackPageEnd:ctrlName];
+             NSLog(@"leave view named %@",ctrlName);
+//             [TalkingData trackPageEnd:ctrlName];
          }
      }error:NULL];
 }

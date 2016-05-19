@@ -113,7 +113,7 @@
 
 + (CGFloat) autoFontSize:(CGFloat)fontSize
 {
-    if (HLWINSIZE.width <= 375) return fontSize;
+    if ([UIScreen mainScreen].bounds.size.width <= 375) return fontSize;
     return fontSize + 2;
 }
 @end
