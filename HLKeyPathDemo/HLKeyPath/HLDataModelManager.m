@@ -1,6 +1,6 @@
 //
 //  HLDataModelManager.m
-//  AutoSizeView
+//  HLKeyPath
 //
 //  Created by 易海 on 16/4/18.
 //  Copyright © 2016年 易海. All rights reserved.
@@ -8,7 +8,6 @@
 
 #import "HLDataModelManager.h"
 #import "NSData+HLUntil.h"
-#import "HLDataModel.h"
 
 #define MDKey @"YcX_P0jkeT"
 
@@ -61,7 +60,7 @@ static HLDataModelManager *instance = nil;
     return _blocksDict;
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark - init
 
 + (HLDataModelManager *)shareDataModelManager
@@ -87,6 +86,9 @@ static HLDataModelManager *instance = nil;
 
 - (BOOL)updateDataModel:(NSString *)keyPath value:(id)value
 {
+    if (!value) {
+        return NO;
+    }
     if ([self hasData:keyPath andDefault:value])
         [self.allData setObject:value forKeyPath:keyPath];
     [self sendData:self.allData[keyPath.keyPathValue[0]] WithKey:keyPath.keyPathValue[0]];
@@ -130,6 +132,9 @@ static HLDataModelManager *instance = nil;
     [self.allData removeObjectForKeyPath:keyPath];
     HLDataModel *dataModel = self.blocksDict[keyPath.keyPathValue[0]];
     if (dataModel) [dataModel removeKey:keyPath withBlock:nil];
+    
+    [self sendData:self.allData[keyPath.keyPathValue[0]] WithKey:keyPath.keyPathValue[0]];
+    
     [self save];
     return YES;
 }
@@ -169,10 +174,11 @@ static HLDataModelManager *instance = nil;
             }
             else
             {
-                NSLog(@"DATA ERROR:!  the key is not verif!");
+                NSLog(@"DATA ERROR:!  the key is not enabled!");
                 return;
             }
             [dict setObject:currentObj forKeyPath:key];
+            currentObj = [dict getObjectFromKeyPaths:@[key]];
         }
         [self setDefaultValue:value keyPaths:[keyPaths subarrayWithRange:(NSRange){1, keyPaths.count - 1}] withMainDict:currentObj];
     }
@@ -186,7 +192,7 @@ static HLDataModelManager *instance = nil;
 }
 
 
-#pragma mark - 
+#pragma mark -
 #pragma makr - save
 - (void)save
 {
@@ -200,7 +206,7 @@ static HLDataModelManager *instance = nil;
     
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark - read
 - (void)read
 {

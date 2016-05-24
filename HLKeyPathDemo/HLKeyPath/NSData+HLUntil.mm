@@ -138,7 +138,10 @@ typedef enum {
             if (![[tmpData class] isSubclassOfClass:[NSArray class]]) return nil;
             NSArray *arrTmp = (NSArray *)tmpData;
             if (arrTmp.count == 0) return nil;
-            tmpData = arrTmp[[key intValue]];
+            if (arrTmp.count > [key intValue])
+                tmpData = arrTmp[[key intValue]];
+            else
+                return nil;
         }
     }
     return tmpData;
@@ -212,7 +215,7 @@ typedef enum {
         }
         else
         {
-           NSLog(@"%s %d: the keypath: %@ not found!", __func__, __LINE__, mObj);
+            NSLog(@"%s %d: the keypath: %@ not found!", __func__, __LINE__, mObj);
         }
     }
 }
@@ -235,7 +238,7 @@ typedef enum {
         [returnArray addObject:newData];
     }
     return returnArray;
-
+    
 }
 
 
@@ -357,26 +360,6 @@ typedef enum {
 - (id)objectFromJSONData
 {
     return [NSJSONSerialization JSONObjectWithData:self options:NSJSONReadingMutableContainers error:nil];
-}
-
-@end
-
-@implementation UIImage (color)
-
-- (UIImage *)imageWithColor:(UIColor *)color
-{
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0, self.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGContextClipToMask(context, rect, self.CGImage);
-    [color setFill];
-    CGContextFillRect(context, rect);
-    UIImage*newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 @end

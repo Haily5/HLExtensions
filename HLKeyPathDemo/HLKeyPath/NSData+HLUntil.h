@@ -6,7 +6,7 @@
 //  Copyright © 2016年 易海. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface NSString (hlUntil)
 /**
@@ -133,6 +133,3 @@
 - (id)objectFromJSONData;
 @end
 
-@interface UIImage (color)
-- (UIImage *)imageWithColor:(UIColor *)color;
-@end

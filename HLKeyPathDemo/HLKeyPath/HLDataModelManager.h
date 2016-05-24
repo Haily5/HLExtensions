@@ -1,6 +1,6 @@
 //
 //  HLDataModelManager.h
-//  AutoSizeView
+//  HLKeyPath
 //
 //  Created by 易海 on 16/4/18.
 //  Copyright © 2016年 易海. All rights reserved.
@@ -45,7 +45,7 @@
 - (void)getData:(NSString *)keyPath  compare:(DataModelBlock) block ;
 
 /**
- *  直接获取数据
+ *  直接获取数据,与带有回调的获得方式分歧在于是否需要监听数据变化
  *
  *  @param keyPath 数据路径
  *
