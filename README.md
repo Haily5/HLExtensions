@@ -16,7 +16,7 @@
 `data[@"key1"][@"key2"][0][@"key3"][1][2];`
 
 #### 读取你的默认数据或者新加载数据
-`[[HLDataModelManager shareDataModelManager] addOrUpdateDataModel:getData:keyPath data:data]`
+`[[HLDataModelManager shareDataModelManager] addOrUpdateDataModel:getData:keyPath data:data];`
 #### 监听你需要关心的数据源
 `
 [[HLDataModelManager shareDataModelManager] getData:keyPath compare:^(id data, NSString 
@@ -24,5 +24,8 @@
         ...
     }];`                
 
+
+#### 更新你的数据
+`[[HLDataModelManager shareDataModelManager]updateDataModel:keyPath value:data];`
 #数据持久化
 只是做了转换为json后的data文件
